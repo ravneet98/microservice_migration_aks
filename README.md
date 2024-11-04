@@ -19,7 +19,7 @@ This setup enables:
 
 ## Project Structure
 
-- `app.py`: Sample Python Flask app for the microservice.
+- `main.py`: Sample Python Flask app for the microservice.
 - `Dockerfile`: Docker configuration for containerizing the app.
 
 ## Steps
