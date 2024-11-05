@@ -1,7 +1,3 @@
-Here’s the formatted GitHub README for your project:
-
----
-
 # Microservice Migration to Azure
 
 This project demonstrates the migration of a Dockerized microservice to **Azure Kubernetes Service (AKS)**, with **Azure Container Registry (ACR)** for image storage and AKS for orchestration. This setup enables high availability and scalability with a cloud-native approach.
