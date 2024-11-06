@@ -1,0 +1,40 @@
+name: Deploy FastAPI to Azure App Service
+
+on:
+  push:
+    branches:
+      - main  # Trigger deployment on push to main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository
+      - name: 'Checkout GitHub Action'
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Python environment
+      - name: 'Set up Python'
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'  # Use the same Python version as in your Azure App Service
+
+      # Step 3: Install dependencies
+      - name: 'Install dependencies'
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Step 4: Zip the application files
+      - name: 'Create a ZIP package'
+        run: zip -r myapp.zip .
+
+      # Step 5: Deploy to Azure App Service
+      - name: 'Deploy to Azure Web App'
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'helloazure1'  # Replace with your Azure App Service name
+          slot-name: 'production'
+          package: './myapp.zip'
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
